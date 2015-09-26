@@ -107,10 +107,12 @@ TEST(Allocator, AllocReuse) {
 
     ASSERT_TRUE(fillUp(a, size, ptrs));
     a.free(ptrs[1]);
-
+    printf("OK\n");
     EXPECT_EQ(ptrs[1].get(), nullptr);
+    printf("OK\n");
     ptrs[1] = a.alloc(size);
-
+    printf("OK\n");
+    
     EXPECT_NE(ptrs[1].get(), nullptr);
     writeTo(ptrs[1], size);
 
@@ -119,6 +121,7 @@ TEST(Allocator, AllocReuse) {
         a.free(p);
     }
 }
+
 
 TEST(Allocator, DefragMove) {
     Allocator a(buf, sizeof(buf));
@@ -157,6 +160,7 @@ TEST(Allocator, DefragMove) {
         a.free(p);
     }
 }
+
 
 TEST(Allocator, DefragMoveTwice) {
     Allocator a(buf, sizeof(buf));
